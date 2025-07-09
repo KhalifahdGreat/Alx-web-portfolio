@@ -61,13 +61,12 @@ jobs:
             fi
 
             cd meshspace
-            docker load -i backend.tar
-            docker load -i frontend.tar
+            sudo docker load -i backend.tar
+            sudo docker load -i frontend.tar
 
-            docker stop backend || true && docker rm backend || true
-            docker stop frontend || true && docker rm frontend || true
+            sudo docker stop backend || true && sudo docker rm backend || true
+            sudo docker stop frontend || true && sudo docker rm frontend || true
 
-            docker run -d --name backend -p 5100:5100 meshspace-backend
-            docker run -d --name frontend -p 4173:4173 meshspace-frontend
-
+            sudo docker run -d --name backend -p 5100:5100 meshspace-backend
+            sudo docker run -d --name frontend -p 4173:4173 meshspace-frontend
 
