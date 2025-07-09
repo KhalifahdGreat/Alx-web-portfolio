@@ -3,7 +3,7 @@ name: Build and Deploy MeshSpace to EC2
 on:
   push:
     branches:
-      - main  # or your preferred branch
+      - future-deploy  # or your preferred branch
 
 jobs:
   deploy:
@@ -24,8 +24,10 @@ jobs:
 
       - name: Save Docker images as tarballs
         run: |
-          docker save meshspace-backend -o backend.tar
-          docker save meshspace-frontend -o frontend.tar
+            docker save meshspace-backend -o backend.tar
+            docker save meshspace-frontend -o frontend.tar
+            chmod 644 backend.tar frontend.tar
+        
 
       - name: Copy Docker images to EC2
         uses: appleboy/scp-action@v0.1.7
